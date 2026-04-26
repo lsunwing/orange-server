@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.orange.server.mapper.DataSourceMapper">
+    
+    <resultMap id="BaseResultMap" type="com.orange.server.entity.DataSource">
+        <id column="id" property="id" />
+        <result column="data_name" property="dataName" />
+        <result column="owner_type" property="ownerType" />
+        <result column="task_type" property="taskType" />
+        <result column="status" property="status" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+    </resultMap>
+    
+    <select id="findByDataNameContaining" resultMap="BaseResultMap">
+        SELECT * FROM sys_data_source WHERE data_name LIKE CONCAT('%', #{dataName}, '%')
+    </select>
+    
+    <select id="findByOwnerType" resultMap="BaseResultMap">
+        SELECT * FROM sys_data_source WHERE owner_type = #{ownerType}
+    </select>
+    
+    <select id="findByTaskType" resultMap="BaseResultMap">
+        SELECT * FROM sys_data_source WHERE task_type = #{taskType}
+    </select>
+    
+</mapper>

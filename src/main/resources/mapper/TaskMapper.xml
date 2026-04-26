@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.orange.server.mapper.TaskMapper">
+    
+    <resultMap id="BaseResultMap" type="com.orange.server.entity.Task">
+        <id column="id" property="id" />
+        <result column="task_name" property="taskName" />
+        <result column="task_type" property="taskType" />
+        <result column="task_code" property="taskCode" />
+        <result column="data_source_id" property="dataSourceId" />
+        <result column="periodic_task_type" property="periodicTaskType" />
+        <result column="data_id" property="dataId" />
+        <result column="cycle_type" property="cycleType" />
+        <result column="cycle_values" property="cycleValues" />
+        <result column="schedule_time" property="scheduleTime" />
+        <result column="status" property="status" />
+        <result column="create_time" property="createTime" />
+        <result column="last_run_time" property="lastRunTime" />
+    </resultMap>
+    
+    <select id="findByTaskNameContaining" resultMap="BaseResultMap">
+        SELECT * FROM sys_task WHERE task_name LIKE CONCAT('%', #{taskName}, '%')
+    </select>
+    
+    <select id="findByTaskType" resultMap="BaseResultMap">
+        SELECT * FROM sys_task WHERE task_type = #{taskType}
+    </select>
+    
+    <select id="findByPeriodicTaskType" resultMap="BaseResultMap">
+        SELECT * FROM sys_task WHERE periodic_task_type = #{periodicTaskType}
+    </select>
+    
+</mapper>
